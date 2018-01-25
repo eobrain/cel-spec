@@ -30,6 +30,11 @@ proto_library( # IGNORE go_proto_library
     deps = [":value_protos"],
 )
 
+cc_proto_library(
+    name = "value_cc_proto",
+    deps = [":value_protos"],
+)
+
 java_proto_library(
     name = "value_java_proto",
     deps = [":value_protos"],
@@ -65,6 +70,11 @@ proto_library(
 
 proto_library( # IGNORE go_proto_library
     name = "syntax_go_proto",
+    deps = [":syntax_protos"],
+)
+
+cc_proto_library(
+    name = "syntax_cc_proto",
     deps = [":syntax_protos"],
 )
 

@@ -29,6 +29,11 @@ proto_library( # IGNORE go_proto_library
     deps = [":checked_protos"],
 )
 
+cc_proto_library(
+    name = "checked_cc_proto",
+    deps = [":checked_protos"],
+)
+
 java_proto_library(
     name = "checked_java_proto",
     deps = [":checked_protos"],
