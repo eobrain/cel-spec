@@ -13,7 +13,6 @@ proto_library(
         "value.proto",
     ],
     # cc_api_version = 2,
-    # go_api_version = 2,
     # java_api_version = 2,
     # js_api_version = 2,
     deps = [
@@ -25,8 +24,8 @@ proto_library(
     ],
 )
 
-proto_library( # IGNORE go_proto_library
-    name = "value_go_proto",
+cc_proto_library(
+    name = "value_cc_proto",
     deps = [":value_protos"],
 )
 
@@ -45,9 +44,28 @@ java_lite_proto_library(
     deps = [":value_protos"],
 )
 
-proto_library( # IGNORE jspb_proto_library
-    name = "value_jspb_proto",
-    deps = [":value_protos"],
+proto_library(
+    name = "eval_protos",
+    srcs = [
+        "eval.proto",
+    ],
+    # cc_api_version = 2,
+    # java_api_version = 2,
+    # js_api_version = 2,
+    deps = [
+        ":value_protos",
+        "@com_google_googleapis//:rpc_status",
+    ],
+)
+
+java_proto_library(
+    name = "eval_java_proto",
+    deps = [":eval_protos"],
+)
+
+java_lite_proto_library(
+    name = "eval_java_proto_lite",
+    deps = [":eval_protos"],
 )
 
 proto_library(
@@ -56,7 +74,6 @@ proto_library(
         "syntax.proto",
     ],
     # cc_api_version = 2,
-    # go_api_version = 2,
     # java_api_version = 2,
     # js_api_version = 2,
     deps = [
@@ -68,7 +85,8 @@ proto_library(
     ],
 )
 
-proto_library( # IGNORE go_proto_library
+proto_library(
+    # IGNORE go_proto_library
     name = "syntax_go_proto",
     deps = [":syntax_protos"],
 )
@@ -78,7 +96,8 @@ cc_proto_library(
     deps = [":syntax_protos"],
 )
 
-proto_library( # IGNORE py_proto_library
+proto_library(
+    # IGNORE py_proto_library
     name = "syntax_py_pb2",
     # api_version = 2,
     deps = [":syntax_protos"],
@@ -91,10 +110,5 @@ java_proto_library(
 
 java_lite_proto_library(
     name = "syntax_java_proto_lite",
-    deps = [":syntax_protos"],
-)
-
-proto_library( # IGNORE jspb_proto_library
-    name = "syntax_jspb_proto",
     deps = [":syntax_protos"],
 )
